@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 function ProductForm() {
-  const [boxQuantity, setBoxQuantity]: number = useState(0);
-  const [outOfBoxQuantity, setOutOfBoxQuantity] = useState(0);
-  const [productData, setProductData] = useState(null);
+  const [boxQuantity, setBoxQuantity] = useState<number>(0);
+  const [outOfBoxQuantity, setOutOfBoxQuantity] = useState<number>(0);
+  const [productData, setProductData] = useState<any>(null);
 
   return (
     <>
@@ -125,7 +125,7 @@ function ProductForm() {
 
       <div>
         <p>
-          Product Quantity =
+          Product Quantity ={" "}
           {!productData
             ? 0
             : productData.quantity * boxQuantity + outOfBoxQuantity}
