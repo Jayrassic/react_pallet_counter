@@ -15,7 +15,7 @@ function ProductForm() {
   useEffect(() => {
     if (productData) {
       saveProduct({
-        id: 1,
+        id: 0,
         name: "test",
         totalWeight:
           productData.weight * boxQuantity +
@@ -23,7 +23,16 @@ function ProductForm() {
         totalCount: boxQuantity + outOfBoxQuantity,
       });
 
-      products.forEach((product) => setTotal(total + product.totalWeight));
+      if (products !== null) {
+        let allWeight = 0;
+
+        products.forEach((product) => {
+          // console.log(product);
+          allWeight += product.totalWeight;
+        });
+
+        setTotal(allWeight);
+      }
     }
   }, [productData, boxQuantity, outOfBoxQuantity]);
 
