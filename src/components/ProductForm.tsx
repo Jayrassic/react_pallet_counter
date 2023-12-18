@@ -133,6 +133,7 @@ function ProductForm() {
 
         <label htmlFor="boxQuantity">Box Quantity:</label>
         <input
+          id="boxQuantity"
           type="number"
           value={boxQuantity}
           min={0}
@@ -141,6 +142,7 @@ function ProductForm() {
 
         <label htmlFor="outOfBoxQty">Out of Box Quantity:</label>
         <input
+          id="outOfBoxQty"
           type="number"
           value={outOfBoxQuantity}
           min={0}
