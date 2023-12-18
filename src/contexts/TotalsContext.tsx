@@ -40,16 +40,34 @@ export interface ProductContext {
 }
 
 export const TotalContextProvider = ({ children }: TotalProps) => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<Product[] | null>(null);
 
   const saveProduct = (product: Product) => {
+    console.log(products);
     const newProduct: Product = {
       id: product.id,
       name: product.name,
       totalWeight: product.totalWeight,
       totalCount: product.totalCount,
     };
-    setProducts([...products, newProduct]);
+
+    let updatedProducts = [];
+
+    if (products === null) {
+      updatedProducts = [newProduct];
+    } else {
+      updatedProducts = products.map((product) => {
+        if (product.id === newProduct.id) {
+          return newProduct;
+        } else {
+          return product;
+        }
+      });
+    }
+
+    console.log(updatedProducts);
+
+    setProducts(updatedProducts);
   };
 
   // const updateTodo = (id: number) => {
