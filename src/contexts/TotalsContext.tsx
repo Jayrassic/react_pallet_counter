@@ -43,7 +43,6 @@ export const TotalContextProvider = ({ children }: TotalProps) => {
   const [products, setProducts] = useState<Product[] | null>(null);
 
   const saveProduct = (product: Product) => {
-    console.log(products);
     const newProduct: Product = {
       id: product.id,
       name: product.name,
@@ -64,8 +63,6 @@ export const TotalContextProvider = ({ children }: TotalProps) => {
         }
       });
     }
-
-    console.log(updatedProducts);
 
     setProducts(updatedProducts);
   };
