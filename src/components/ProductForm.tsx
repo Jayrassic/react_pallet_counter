@@ -1,14 +1,11 @@
 import { useState, useContext, useEffect } from "react";
-import {
-  TotalContext,
-  ProductContext,
-  Product,
-} from "../contexts/TotalsContext";
+import { TotalContext, ProductContext } from "../contexts/TotalsContext";
 
 function ProductForm() {
   const [boxQuantity, setBoxQuantity] = useState<number>(0);
   const [outOfBoxQuantity, setOutOfBoxQuantity] = useState<number>(0);
   const [productData, setProductData] = useState<any>(null);
+  const [total, setTotal] = useState(0);
 
   const { saveProduct, products } = useContext(TotalContext) as ProductContext;
 
@@ -16,27 +13,27 @@ function ProductForm() {
     if (productData) {
       saveProduct({
         id: 0,
-        name: "test",
+        name: productData.name,
         totalWeight:
           productData.weight * boxQuantity +
           productData.single * outOfBoxQuantity,
         totalCount: boxQuantity + outOfBoxQuantity,
       });
-
-      if (products !== null) {
-        let allWeight = 0;
-
-        products.forEach((product) => {
-          // console.log(product);
-          allWeight += product.totalWeight;
-        });
-
-        setTotal(allWeight);
-      }
     }
   }, [productData, boxQuantity, outOfBoxQuantity]);
 
-  const [total, setTotal] = useState(0);
+  useEffect(() => {
+    if (products !== null) {
+      let allWeight = 0;
+
+      products.forEach((product) => {
+        // console.log(product);
+        allWeight += product.totalWeight;
+      });
+
+      setTotal(allWeight);
+    }
+  }, [products]);
 
   return (
     <>
