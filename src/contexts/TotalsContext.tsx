@@ -35,6 +35,7 @@ export interface Product {
 
 export interface ProductContext {
   products: Product[];
+  setProducts: () => void;
   saveNewProduct: (product: Product) => void;
   updateProduct: (product: Product) => void;
 }
@@ -77,14 +78,14 @@ export const TotalContextProvider = ({ children }: TotalProps) => {
 
       const newArr = [...products];
       newArr[id.id] = update;
-      console.log(newArr);
-
       setProducts(newArr);
     }
   };
 
   return (
-    <TotalContext.Provider value={{ products, saveNewProduct, updateProduct }}>
+    <TotalContext.Provider
+      value={{ products, setProducts, saveNewProduct, updateProduct }}
+    >
       {children}
     </TotalContext.Provider>
   );
