@@ -35,14 +35,14 @@ export interface Product {
 
 export interface ProductContext {
   products: Product[];
-  saveProduct: (product: Product) => void;
-  // updateProduct: (id: number) => void;
+  saveNewProduct: (product: Product) => void;
+  updateProduct: (product: Product) => void;
 }
 
 export const TotalContextProvider = ({ children }: TotalProps) => {
   const [products, setProducts] = useState<Product[] | null>(null);
 
-  const saveProduct = (product: Product) => {
+  const saveNewProduct = (product: Product) => {
     const newProduct: Product = {
       id: product.id,
       name: product.name,
@@ -52,32 +52,39 @@ export const TotalContextProvider = ({ children }: TotalProps) => {
 
     let updatedProducts = [];
 
-    if (products === null) {
-      updatedProducts = [newProduct];
+    if (products) {
+      updatedProducts = products;
+      updatedProducts.push(newProduct);
     } else {
-      updatedProducts = products.map((product) => {
-        if (product.id === newProduct.id) {
-          return newProduct;
-        } else {
-          return product;
-        }
-      });
+      updatedProducts.push(newProduct);
     }
 
     setProducts(updatedProducts);
   };
 
-  // const updateTodo = (id: number) => {
-  //   products.filter((product:Product ) => {
-  //     if (product.id === id) {
-  //       product.status = true
-  //       setProducts([...products])
-  //     }
-  //   })
-  // }
+  const updateProduct = (
+    id: number
+    // name: string,
+    // totalWeight: number,
+    // totalCount: number
+  ) => {
+    if (products) {
+      const update = products.find((product: Product) => product.id === id.id);
+
+      update.name = id.name;
+      update.totalWeight = id.totalWeight;
+      update.totalCount = id.totalCount;
+
+      const newArr = [...products];
+      newArr[id.id] = update;
+      console.log(newArr);
+
+      setProducts(newArr);
+    }
+  };
 
   return (
-    <TotalContext.Provider value={{ products, saveProduct }}>
+    <TotalContext.Provider value={{ products, saveNewProduct, updateProduct }}>
       {children}
     </TotalContext.Provider>
   );
