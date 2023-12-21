@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { TotalContext, ProductContext } from "../contexts/TotalsContext";
 
 function Header() {
-  const { products, setProducts } = useContext(TotalContext) as ProductContext;
+  const { products } = useContext(TotalContext) as ProductContext;
 
   const [total, setTotal] = useState(0);
 
@@ -11,7 +11,6 @@ function Header() {
       let allWeight = 0;
 
       products.forEach((product) => {
-        // console.log(product);
         allWeight += product.totalWeight;
       });
 
