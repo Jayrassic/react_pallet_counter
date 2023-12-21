@@ -1,9 +1,12 @@
 import "./App.css";
-import ProductForm from "./components/ProductForm";
+// import ProductForm from "./components/ProductForm";
+import FormHolder from "./components/FormHolder";
+
 function App() {
   return (
     <>
-      <ProductForm />
+      <FormHolder />
+      {/* <ProductForm /> */}
     </>
   );
 }
