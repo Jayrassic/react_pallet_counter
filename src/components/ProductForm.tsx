@@ -5,13 +5,11 @@ function ProductForm(props) {
   const [boxQuantity, setBoxQuantity] = useState<number>(0);
   const [outOfBoxQuantity, setOutOfBoxQuantity] = useState<number>(0);
   const [productData, setProductData] = useState<any>(null);
-  //   const [total, setTotal] = useState(0);
 
   const { updateProduct } = useContext(TotalContext) as ProductContext;
 
   useEffect(() => {
     if (productData) {
-      //   console.log(products);
       updateProduct({
         id: props.id,
         name: productData.name,
@@ -23,22 +21,8 @@ function ProductForm(props) {
     }
   }, [productData, boxQuantity, outOfBoxQuantity]);
 
-  //   useEffect(() => {
-  //     if (products !== null) {
-  //       let allWeight = 0;
-
-  //       products.forEach((product) => {
-  //         // console.log(product);
-  //         allWeight += product.totalWeight;
-  //       });
-
-  //       setTotal(allWeight);
-  //     }
-  //   }, [products]);
-
   return (
     <>
-      {/* <h1>Total: {total}</h1> */}
       <form>
         <label htmlFor="productSelection">Select Product:</label>
         <select
