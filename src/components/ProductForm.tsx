@@ -1,18 +1,19 @@
 import { useState, useContext, useEffect } from "react";
 import { TotalContext, ProductContext } from "../contexts/TotalsContext";
 
-function ProductForm() {
+function ProductForm(props) {
   const [boxQuantity, setBoxQuantity] = useState<number>(0);
   const [outOfBoxQuantity, setOutOfBoxQuantity] = useState<number>(0);
   const [productData, setProductData] = useState<any>(null);
-  const [total, setTotal] = useState(0);
+  //   const [total, setTotal] = useState(0);
 
-  const { saveProduct, products } = useContext(TotalContext) as ProductContext;
+  const { updateProduct } = useContext(TotalContext) as ProductContext;
 
   useEffect(() => {
     if (productData) {
-      saveProduct({
-        id: 0,
+      //   console.log(products);
+      updateProduct({
+        id: props.id,
         name: productData.name,
         totalWeight:
           productData.weight * boxQuantity +
@@ -22,22 +23,22 @@ function ProductForm() {
     }
   }, [productData, boxQuantity, outOfBoxQuantity]);
 
-  useEffect(() => {
-    if (products !== null) {
-      let allWeight = 0;
+  //   useEffect(() => {
+  //     if (products !== null) {
+  //       let allWeight = 0;
 
-      products.forEach((product) => {
-        // console.log(product);
-        allWeight += product.totalWeight;
-      });
+  //       products.forEach((product) => {
+  //         // console.log(product);
+  //         allWeight += product.totalWeight;
+  //       });
 
-      setTotal(allWeight);
-    }
-  }, [products]);
+  //       setTotal(allWeight);
+  //     }
+  //   }, [products]);
 
   return (
     <>
-      <h1>Total: {total}</h1>
+      {/* <h1>Total: {total}</h1> */}
       <form>
         <label htmlFor="productSelection">Select Product:</label>
         <select
@@ -57,6 +58,7 @@ function ProductForm() {
           <option
             id="ACS-12-26"
             className="item"
+            data-name="ACS-12-26"
             data-quantity="50"
             data-weight="44"
             data-single=".88"
@@ -66,6 +68,7 @@ function ProductForm() {
           <option
             id="ACS-10-32S"
             className="item"
+            data-name="ACS-10-32S"
             data-quantity="25"
             data-weight="20"
             data-single=".8"
@@ -75,6 +78,7 @@ function ProductForm() {
           <option
             id="ACS-10-32B"
             className="item"
+            data-name="ACS-10-32B"
             data-quantity="25"
             data-weight="33"
             data-single="1.32"
@@ -84,6 +88,7 @@ function ProductForm() {
           <option
             id="ACS-34-15"
             className="item"
+            data-name="ACS-34-15"
             data-quantity="10"
             data-weight="30"
             data-single="3"
@@ -93,6 +98,7 @@ function ProductForm() {
           <option
             id="ACS-31-15MS"
             className="item"
+            data-name="ACS-31-15MS"
             data-quantity="10"
             data-weight="30"
             data-single="3"
@@ -102,6 +108,7 @@ function ProductForm() {
           <option
             id="ACS-12-22"
             className="item"
+            data-name="ACS-12-22"
             data-quantity="50"
             data-weight="33"
             data-single=".66"
@@ -111,6 +118,7 @@ function ProductForm() {
           <option
             id="ACS-10-28"
             className="item"
+            data-name="ACS-10-28"
             data-quantity="25"
             data-weight="24.3"
             data-single=".97"
@@ -120,6 +128,7 @@ function ProductForm() {
           <option
             id="ACS-10-36"
             className="item"
+            data-name="ACS-10-36"
             data-quantity="25"
             data-weight="30"
             data-single="3"
@@ -129,6 +138,7 @@ function ProductForm() {
           <option
             id="ACS-10-40"
             className="item"
+            data-name="ACS-10-40"
             data-quantity="25"
             data-weight="42"
             data-single="1.68"
