@@ -1,10 +1,18 @@
 import { useState, useContext, useEffect } from "react";
 import { TotalContext, ProductContext } from "../contexts/TotalsContext";
 
+export interface ProductDataInterface {
+  name: string;
+  quantity: number;
+  single: number;
+  weight: number;
+}
 function ProductForm({ id }: { id: number }) {
   const [boxQuantity, setBoxQuantity] = useState<number>(0);
   const [outOfBoxQuantity, setOutOfBoxQuantity] = useState<number>(0);
-  const [productData, setProductData] = useState<any>(null);
+  const [productData, setProductData] = useState<ProductDataInterface | null>(
+    null
+  );
 
   const { updateProduct } = useContext(TotalContext) as ProductContext;
 
@@ -28,7 +36,13 @@ function ProductForm({ id }: { id: number }) {
         <select
           name="productSelection"
           id="productSelection"
-          onChange={(e) => setProductData(e.target.selectedOptions[0].dataset)}
+          onChange={(e) => {
+            const data = JSON.parse(
+              JSON.stringify(e.target.selectedOptions[0].dataset)
+            );
+            setProductData(data);
+          }}
+          // onChange={(e) => console.log(e.target.selectedOptions[0].dataset)}
         >
           <option
             id="placeholder"
