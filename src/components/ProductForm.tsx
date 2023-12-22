@@ -17,14 +17,34 @@ function ProductForm({ id }: { id: number }) {
 
   const { updateProduct } = useContext(TotalContext) as ProductContext;
 
+  function totalWeightCalculation(
+    productData: ProductDataInterface,
+    boxQuantity: number,
+    outOfBoxQuantity: number
+  ): number {
+    const boxWeight = productData.weight * boxQuantity;
+    const looseWeight = productData.single * outOfBoxQuantity;
+    return boxWeight + looseWeight;
+  }
+
+  function totalPiecesCalculation(
+    productData: ProductDataInterface,
+    boxQuantity: number,
+    outOfBoxQuantity: number
+  ) {
+    return productData.quantity * boxQuantity + outOfBoxQuantity;
+  }
+
   useEffect(() => {
     if (productData) {
       updateProduct({
         id: id,
         name: productData.name,
-        totalWeight:
-          productData.weight * boxQuantity +
-          productData.single * outOfBoxQuantity,
+        totalWeight: totalWeightCalculation(
+          productData,
+          boxQuantity,
+          outOfBoxQuantity
+        ),
         totalCount: boxQuantity + outOfBoxQuantity,
       });
     }
@@ -174,13 +194,16 @@ function ProductForm({ id }: { id: number }) {
           Product Quantity ={" "}
           {!productData
             ? 0
-            : productData.quantity * boxQuantity + outOfBoxQuantity}
+            : totalPiecesCalculation(
+                productData,
+                boxQuantity,
+                outOfBoxQuantity
+              )}
         </p>
         Pallet Weight ={" "}
         {!productData
           ? 0
-          : productData.weight * boxQuantity +
-            productData.single * outOfBoxQuantity}
+          : totalWeightCalculation(productData, boxQuantity, outOfBoxQuantity)}
       </div>
     </>
   );
