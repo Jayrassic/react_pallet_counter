@@ -1,28 +1,6 @@
-import { createContext, useState, Dispatch, SetStateAction } from "react";
+import { createContext, useState } from "react";
 
-// export const TotalContext = createContext<ProductContext | null>(null);
-
-// type TotalProps = { children: React.ReactNode };
-
-// interface Product {
-//   productName: string;
-//   totalWeight: number;
-//   totalCount: number;
-// }
-
-// type ProductContext = [Product[], Dispatch<SetStateAction<Product[]>>];
-
-// export const TotalContextProvider = ({ children }: TotalProps) => {
-//   const [products, setProducts] = useState<Product[]>([]);
-
-//   return (
-//     <TotalContext.Provider value={[products, setProducts]}>
-//       {children}
-//     </TotalContext.Provider>
-//   );
-// };
-
-export const TotalContext = createContext<ProductContext | null>(null);
+export const TotalContext = createContext<null | ProductContext>(null);
 
 type TotalProps = { children: React.ReactNode };
 
@@ -43,7 +21,7 @@ export interface ProductContext {
 export const TotalContextProvider = ({ children }: TotalProps) => {
   const [products, setProducts] = useState<Product[] | null>(null);
 
-  const saveNewProduct = (product: Product) => {
+  const saveNewProduct = (product: Product): void => {
     const newProduct: Product = {
       id: product.id,
       name: product.name,
@@ -63,22 +41,21 @@ export const TotalContextProvider = ({ children }: TotalProps) => {
     setProducts(updatedProducts);
   };
 
-  const updateProduct = (
-    id: number
-    // name: string,
-    // totalWeight: number,
-    // totalCount: number
-  ) => {
+  const updateProduct = (newProduct: Product): void => {
     if (products) {
-      const update = products.find((product: Product) => product.id === id.id);
+      const update: Product | undefined = products.find(
+        (product: Product) => product.id === newProduct.id
+      );
 
-      update.name = id.name;
-      update.totalWeight = id.totalWeight;
-      update.totalCount = id.totalCount;
+      if (update) {
+        update.name = newProduct.name;
+        update.totalWeight = newProduct.totalWeight;
+        update.totalCount = newProduct.totalCount;
 
-      const newArr = [...products];
-      newArr[id.id] = update;
-      setProducts(newArr);
+        const newArr = [...products];
+        newArr[newProduct.id] = update;
+        setProducts(newArr);
+      }
     }
   };
 
