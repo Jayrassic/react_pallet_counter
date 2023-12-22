@@ -6,12 +6,17 @@ function Header() {
 
   const [total, setTotal] = useState(0);
 
+  // Calculates total weight when products is modified
   useEffect(() => {
     if (products !== null) {
       let allWeight = 0;
 
       products.forEach((product) => {
-        allWeight += product.totalWeight;
+        if (!product.totalWeight) {
+          return;
+        } else {
+          allWeight += product.totalWeight;
+        }
       });
 
       setTotal(allWeight);
