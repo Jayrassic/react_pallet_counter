@@ -35,14 +35,13 @@ function FormHolder() {
 
   if (products) {
     return (
-      <>
-        <button onClick={clearHandler}>Clear All</button>
-
+      <section className="form-holder">
         {products.map((product) => {
           return <ProductForm key={product.id} id={product.id}></ProductForm>;
         })}
         <button onClick={clickHandler}>Add Additional Form</button>
-      </>
+        <button onClick={clearHandler}>Clear All</button>
+      </section>
     );
   }
 }
