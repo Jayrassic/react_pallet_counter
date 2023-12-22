@@ -28,9 +28,9 @@ type TotalProps = { children: React.ReactNode };
 
 export interface Product {
   id: number;
-  name: string;
-  totalWeight: number;
-  totalCount: number;
+  name: string | null;
+  totalWeight: number | null;
+  totalCount: number | null;
 }
 
 export interface ProductContext {
