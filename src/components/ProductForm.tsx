@@ -7,6 +7,7 @@ export interface ProductDataInterface {
   single: number;
   weight: number;
 }
+
 function ProductForm({ id }: { id: number }) {
   const [boxQuantity, setBoxQuantity] = useState<number>(0);
   const [outOfBoxQuantity, setOutOfBoxQuantity] = useState<number>(0);
@@ -29,6 +30,14 @@ function ProductForm({ id }: { id: number }) {
     }
   }, [productData, boxQuantity, outOfBoxQuantity]);
 
+  function productChangeHandler(e: React.ChangeEvent<HTMLSelectElement>): void {
+    const data = JSON.parse(
+      JSON.stringify(e.target.selectedOptions[0].dataset)
+    );
+
+    setProductData(data);
+  }
+
   return (
     <>
       <form>
@@ -37,12 +46,8 @@ function ProductForm({ id }: { id: number }) {
           name="productSelection"
           id="productSelection"
           onChange={(e) => {
-            const data = JSON.parse(
-              JSON.stringify(e.target.selectedOptions[0].dataset)
-            );
-            setProductData(data);
+            productChangeHandler(e);
           }}
-          // onChange={(e) => console.log(e.target.selectedOptions[0].dataset)}
         >
           <option
             id="placeholder"
