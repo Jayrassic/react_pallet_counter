@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { TotalContext, ProductContext } from "../contexts/TotalsContext";
 
-function ProductForm(props) {
+function ProductForm({ id }: { id: number }) {
   const [boxQuantity, setBoxQuantity] = useState<number>(0);
   const [outOfBoxQuantity, setOutOfBoxQuantity] = useState<number>(0);
   const [productData, setProductData] = useState<any>(null);
@@ -11,7 +11,7 @@ function ProductForm(props) {
   useEffect(() => {
     if (productData) {
       updateProduct({
-        id: props.id,
+        id: id,
         name: productData.name,
         totalWeight:
           productData.weight * boxQuantity +
