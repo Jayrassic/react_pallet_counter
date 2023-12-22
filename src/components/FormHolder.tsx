@@ -44,13 +44,6 @@ function FormHolder() {
         <button onClick={clickHandler}>Add Additional Form</button>
       </>
     );
-    // } else {
-    //   saveNewProduct({
-    //     id: 0,
-    //     name: null,
-    //     totalWeight: null,
-    //     totalCount: null,
-    //   });
   }
 }
 
