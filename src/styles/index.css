@@ -26,7 +26,7 @@
 
 body {
   place-items: center;
-  min-width: 320px;
+  min-width: 275px;
   min-height: 100vh;
 }
 
@@ -144,4 +144,18 @@ form {
 .btn-container {
   display: flex;
   gap: 1rem;
+}
+
+@media screen and (max-width: 525px) {
+  h1 {
+    font-size: 3rem;
+  }
+  .form-holder {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .btn-container {
+    flex-direction: column;
+  }
 }
