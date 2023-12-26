@@ -35,7 +35,7 @@ function FormHolder() {
 
   if (products) {
     return (
-      <section className="form-holder">
+      <section className="form-section">
         {products.map((product) => {
           return <ProductForm key={product.id} id={product.id}></ProductForm>;
         })}
