@@ -39,8 +39,10 @@ function FormHolder() {
         {products.map((product) => {
           return <ProductForm key={product.id} id={product.id}></ProductForm>;
         })}
-        <button onClick={clickHandler}>Add Additional Form</button>
-        <button onClick={clearHandler}>Clear All</button>
+        <div className="btn-container">
+          <button onClick={clickHandler}>Add Additional Form</button>
+          <button onClick={clearHandler}>Clear All</button>
+        </div>
       </section>
     );
   }
