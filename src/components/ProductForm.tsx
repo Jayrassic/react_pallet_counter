@@ -199,17 +199,18 @@ function ProductForm({ id }: { id: number }) {
         <p>
           Product Quantity ={" "}
           {!productData
-            ? 0
+            ? 0 + " pcs."
             : totalPiecesCalculation(
                 productData,
                 boxQuantity,
                 outOfBoxQuantity
-              )}
+              ) + " pcs."}
         </p>
         Pallet Weight ={" "}
         {!productData
-          ? 0
-          : totalWeightCalculation(productData, boxQuantity, outOfBoxQuantity)}
+          ? 0 + " lbs."
+          : totalWeightCalculation(productData, boxQuantity, outOfBoxQuantity) +
+            " lbs."}
       </div>
     </div>
   );

@@ -27,7 +27,7 @@ function Header() {
     <>
       <h1 className="title">Pallet Counter</h1>
       <div className="top-total">
-        <h3>Total Weight: {total}</h3>
+        <h3>Total Weight: {total} lbs.</h3>
       </div>
     </>
   );
