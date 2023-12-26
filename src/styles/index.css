@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Chakra Petch", sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-size: 16px;
@@ -17,21 +17,11 @@
 #root {
   max-width: 1440px;
   margin: 0 auto;
-  text-align: center;
 }
 
 * {
   padding: 0;
   margin: 0;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
 body {
@@ -41,48 +31,117 @@ body {
 }
 
 h1 {
-  font-size: 3.2rem;
+  font-family: "Silkscreen", sans-serif;
+  font-size: 4rem;
   line-height: 1.1;
+  margin: 0;
+  padding: 1rem;
+}
+
+h3 {
+  padding: 1rem;
+}
+
+input,
+select {
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  border: none;
+  transition: transform 0.2s ease-in, box-shadow 0.1s ease-in;
+}
+
+input:focus,
+select:focus {
+  transform: scale(1.1);
+  outline: none;
+  box-shadow: 0px 0px 11px 1px rgba(19, 19, 19, 0.559);
 }
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: none;
   padding: 0.6rem 1.2rem;
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
-  background-color: #908d8d;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-header {
   background-color: rgb(48, 48, 255);
   color: white;
-  padding: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in, box-shadow 0.1s ease-in;
+}
+button:hover,
+button:focus {
+  transform: scale(1.1);
+  background-color: rgb(87, 87, 249);
+  box-shadow: 0px 0px 7px 0px rgba(19, 19, 19, 0.559);
+}
+
+button:active {
+  background-color: rgb(40, 40, 187);
+  box-shadow: inset 0px 0px 6px 4px rgba(19, 19, 19, 0.559);
+}
+
+.title {
+  background-color: rgb(48, 48, 255);
+  color: white;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.top-total {
+  position: sticky;
+  background-color: rgb(48, 48, 255);
+  color: white;
+  box-shadow: 0px 9px 9px 0px rgba(19, 19, 19, 0.559);
+  text-align: center;
+  top: 0%;
 }
 
 section {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   padding: 2rem 0;
+  align-items: center;
 }
 
 .form-holder {
-  padding: 0.75rem;
+  /* display: inline-flex; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1rem;
+  margin: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3.25rem;
+  background-color: #e4e4e7;
+  border-radius: 0.75rem;
+  flex-shrink: 0;
+  box-shadow: 0px 0px 7px 0px rgba(19, 19, 19, 0.559);
 }
 
 form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
 }
 
 .totals-box {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 0.5rem;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.btn-container {
+  display: flex;
+  gap: 1rem;
 }
