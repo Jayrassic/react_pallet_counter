@@ -59,7 +59,7 @@ function ProductForm({ id }: { id: number }) {
   }
 
   return (
-    <>
+    <div className="form-holder">
       <form>
         <label htmlFor="productSelection">Select Product:</label>
         <select
@@ -189,7 +189,7 @@ function ProductForm({ id }: { id: number }) {
         />
       </form>
 
-      <div>
+      <div className="totals-box">
         <p>
           Product Quantity ={" "}
           {!productData
@@ -205,7 +205,7 @@ function ProductForm({ id }: { id: number }) {
           ? 0
           : totalWeightCalculation(productData, boxQuantity, outOfBoxQuantity)}
       </div>
-    </>
+    </div>
   );
 }
 
