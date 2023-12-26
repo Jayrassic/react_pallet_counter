@@ -24,12 +24,12 @@ function Header() {
   }, [products]);
 
   return (
-    <header>
-      <h1>Pallet Counter</h1>
-      <div>
+    <>
+      <h1 className="title">Pallet Counter</h1>
+      <div className="top-total">
         <h3>Total Weight: {total}</h3>
       </div>
-    </header>
+    </>
   );
 }
 
