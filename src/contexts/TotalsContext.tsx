@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, Dispatch, SetStateAction } from "react";
 
 export const TotalContext = createContext<null | ProductContext>(null);
 
@@ -12,8 +12,8 @@ export interface Product {
 }
 
 export interface ProductContext {
-  products: Product[];
-  setProducts: () => void;
+  products: Product[] | null;
+  setProducts: Dispatch<SetStateAction<Product[] | null>>;
   saveNewProduct: (product: Product) => void;
   updateProduct: (product: Product) => void;
 }
