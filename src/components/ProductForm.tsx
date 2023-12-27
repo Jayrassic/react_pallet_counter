@@ -24,7 +24,7 @@ function ProductForm({ id }: { id: number }) {
   ): number {
     const boxWeight = productData.weight * boxQuantity;
     const looseWeight = productData.single * outOfBoxQuantity;
-    return boxWeight + looseWeight;
+    return Math.ceil(boxWeight + looseWeight);
   }
 
   function totalPiecesCalculation(
