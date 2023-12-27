@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 import { TotalContext, ProductContext } from "../contexts/TotalsContext";
 
 export interface ProductDataInterface {
@@ -35,7 +35,7 @@ function ProductForm({ id }: { id: number }) {
     return productData.quantity * boxQuantity + outOfBoxQuantity;
   }
 
-  useEffect(() => {
+  const updateCallback = useCallback(() => {
     if (productData) {
       updateProduct({
         id: id,
@@ -48,7 +48,11 @@ function ProductForm({ id }: { id: number }) {
         totalCount: boxQuantity + outOfBoxQuantity,
       });
     }
-  }, [productData, boxQuantity, outOfBoxQuantity]);
+  }, [boxQuantity, id, outOfBoxQuantity, productData, updateProduct]);
+
+  useEffect(() => {
+    updateCallback();
+  }, [productData, updateCallback]);
 
   function productChangeHandler(e: React.ChangeEvent<HTMLSelectElement>): void {
     const data = JSON.parse(

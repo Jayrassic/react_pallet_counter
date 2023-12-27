@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 import ProductForm from "./ProductForm";
 import { TotalContext, ProductContext } from "../contexts/TotalsContext";
 
@@ -22,16 +22,16 @@ function FormHolder() {
       totalCount: null,
     });
   }
+
+  const saveCallback = useCallback(() => {
+    saveNewProduct({ id: 0, name: null, totalWeight: null, totalCount: null });
+  }, [saveNewProduct]);
+
   useEffect(() => {
     if (!products) {
-      saveNewProduct({
-        id: 0,
-        name: null,
-        totalWeight: null,
-        totalCount: null,
-      });
+      saveCallback();
     }
-  }, [products]);
+  }, [products, saveCallback]);
 
   if (products) {
     return (
