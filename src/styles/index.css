@@ -55,8 +55,14 @@ select {
   transition: transform 0.2s ease-in, box-shadow 0.1s ease-in;
 }
 
+label {
+  pointer-events: none;
+}
+
 input:focus,
-select:focus {
+input:hover,
+select:focus,
+select:hover {
   transform: scale(1.1);
   outline: none;
   box-shadow: 0px 0px 11px 1px rgba(19, 19, 19, 0.559);
