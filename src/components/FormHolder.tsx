@@ -23,15 +23,16 @@ function FormHolder() {
     });
   }
 
-  const saveCallback = useCallback(() => {
-    saveNewProduct({ id: 0, name: null, totalWeight: null, totalCount: null });
-  }, [saveNewProduct]);
-
   useEffect(() => {
     if (!products) {
-      saveCallback();
+      saveNewProduct({
+        id: 0,
+        name: null,
+        totalWeight: null,
+        totalCount: null,
+      });
     }
-  }, [products, saveCallback]);
+  }, [products, saveNewProduct]);
 
   if (products) {
     return (
