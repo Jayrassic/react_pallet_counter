@@ -21,6 +21,7 @@ export interface ProductContext {
 export const TotalContextProvider = ({ children }: TotalProps) => {
   const [products, setProducts] = useState<Product[] | null>(null);
 
+  // Used to create a new product in the products State for future modifications.
   const saveNewProduct = (product: Product): void => {
     const newProduct: Product = {
       id: product.id,
@@ -29,6 +30,7 @@ export const TotalContextProvider = ({ children }: TotalProps) => {
       totalCount: product.totalCount,
     };
 
+    // Empty array used to push products into.
     let updatedProducts = [];
 
     if (products) {
@@ -41,8 +43,10 @@ export const TotalContextProvider = ({ children }: TotalProps) => {
     setProducts(updatedProducts);
   };
 
+  // Used to update a product with new information
   const updateProduct = (newProduct: Product): void => {
     if (products) {
+      // Searches for product and saves data into variable.
       const update: Product | undefined = products.find(
         (product: Product) => product.id === newProduct.id
       );

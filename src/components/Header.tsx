@@ -4,6 +4,7 @@ import { TotalContext, ProductContext } from "../contexts/TotalsContext";
 function Header() {
   const { products } = useContext(TotalContext) as ProductContext;
 
+  // State for the total lbs in header.
   const [total, setTotal] = useState(0);
 
   // Calculates total weight when products is modified

@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useCallback } from "react";
+import { useState, useContext, useEffect } from "react";
 import ProductForm from "./ProductForm";
 import { TotalContext, ProductContext } from "../contexts/TotalsContext";
 
@@ -8,11 +8,13 @@ function FormHolder() {
     TotalContext
   ) as ProductContext;
 
+  // Uses to rest the state of the app.
   function clearHandler() {
     setIdCount(1);
     setProducts(null);
   }
 
+  // Used to add progress idCount and save product to the products context.
   function clickHandler() {
     setIdCount(() => idCount + 1);
     saveNewProduct({
@@ -23,6 +25,7 @@ function FormHolder() {
     });
   }
 
+  // Watch products to see if it is empty. Resets to a single product if it is.
   useEffect(() => {
     if (!products) {
       saveNewProduct({

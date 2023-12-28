@@ -17,6 +17,7 @@ function ProductForm({ id }: { id: number }) {
 
   const { updateProduct } = useContext(TotalContext) as ProductContext;
 
+  // Calculates total wight of the productData info.
   function totalWeightCalculation(
     productData: ProductDataInterface,
     boxQuantity: number,
@@ -27,6 +28,7 @@ function ProductForm({ id }: { id: number }) {
     return Math.ceil(boxWeight + looseWeight);
   }
 
+  // Calculates the total number or pieces in a product.
   function totalPiecesCalculation(
     productData: ProductDataInterface,
     boxQuantity: number,
@@ -35,6 +37,7 @@ function ProductForm({ id }: { id: number }) {
     return productData.quantity * boxQuantity + outOfBoxQuantity;
   }
 
+  // Watches for changes in inputs and updates the products context.
   useEffect(() => {
     if (productData) {
       updateProduct({
@@ -51,6 +54,7 @@ function ProductForm({ id }: { id: number }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productData, boxQuantity, outOfBoxQuantity]);
 
+  // Gathers information from DOM and sets it to the ProductData State.
   function productChangeHandler(e: React.ChangeEvent<HTMLSelectElement>): void {
     const data = JSON.parse(
       JSON.stringify(e.target.selectedOptions[0].dataset)
@@ -59,8 +63,10 @@ function ProductForm({ id }: { id: number }) {
     setProductData(data);
   }
 
+  // Gets the first input ref to focus on creation.
   const firstInput = useRef<HTMLSelectElement>(null);
 
+  // When form is created, focuses on the first input.
   useEffect(() => {
     if (firstInput.current) {
       firstInput.current.focus();
