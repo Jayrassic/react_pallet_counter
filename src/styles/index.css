@@ -4,14 +4,19 @@
   font-weight: 400;
   font-size: 16px;
 
-  color-scheme: light dark;
   color: rgba(0, 0, 0, 0.87);
-  background-color: #ffffff;
+  background-color: white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --main-color: rgb(252, 214, 74);
+  --heading-text-color: #333024;
+  --button-focus: rgb(254, 254, 6);
+  --button-active: rgb(254, 184, 6);
+  --form-background: rgb(208, 207, 207);
 }
 
 #root {
@@ -64,26 +69,27 @@ button {
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
-  background-color: rgb(48, 48, 255);
-  color: white;
+  background-color: var(--main-color);
+  color: var(--heading-text-color);
   cursor: pointer;
-  transition: transform 0.2s ease-in, box-shadow 0.1s ease-in;
+  transition: transform 0.2s ease-in, box-shadow 0.1s ease-in,
+    background-color 0.2s ease-in;
 }
 button:hover,
 button:focus {
   transform: scale(1.1);
-  background-color: rgb(87, 87, 249);
+  background-color: var(--button-focus);
   box-shadow: 0px 0px 7px 0px rgba(19, 19, 19, 0.559);
 }
 
 button:active {
-  background-color: rgb(40, 40, 187);
+  background-color: var(--button-active);
   box-shadow: inset 0px 0px 6px 4px rgba(19, 19, 19, 0.559);
 }
 
 .title {
-  background-color: rgb(48, 48, 255);
-  color: white;
+  background-color: var(--main-color);
+  color: var(--heading-text-color);
   text-align: center;
   position: relative;
   z-index: 1;
@@ -91,8 +97,8 @@ button:active {
 
 .top-total {
   position: sticky;
-  background-color: rgb(48, 48, 255);
-  color: white;
+  background-color: var(--main-color);
+  color: var(--heading-text-color);
   box-shadow: 0px 9px 9px 0px rgba(19, 19, 19, 0.559);
   text-align: center;
   top: 0%;
@@ -107,7 +113,6 @@ section {
 }
 
 .form-holder {
-  /* display: inline-flex; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 1rem;
@@ -115,10 +120,11 @@ section {
   justify-content: center;
   flex-wrap: wrap;
   gap: 3.25rem;
-  background-color: #e4e4e7;
+  background-color: var(--form-background);
   border-radius: 0.75rem;
   flex-shrink: 0;
   box-shadow: 0px 0px 7px 0px rgba(19, 19, 19, 0.559);
+  min-width: 500px;
 }
 
 form {
@@ -146,11 +152,12 @@ form {
   gap: 1rem;
 }
 
-@media screen and (max-width: 525px) {
+@media screen and (max-width: 550px) {
   h1 {
     font-size: 3rem;
   }
   .form-holder {
+    min-width: 220px;
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
