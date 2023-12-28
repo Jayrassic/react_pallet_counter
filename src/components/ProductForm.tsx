@@ -64,7 +64,7 @@ function ProductForm({ id }: { id: number }) {
   useEffect(() => {
     if (firstInput.current) {
       firstInput.current.focus();
-      firstInput.current.scrollIntoView();
+      firstInput.current.scrollIntoView({ behavior: "smooth" });
     }
   }, []);
 
