@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { TotalContext, ProductContext } from "../contexts/TotalsContext";
 
 export interface ProductDataInterface {
@@ -59,12 +59,22 @@ function ProductForm({ id }: { id: number }) {
     setProductData(data);
   }
 
+  const firstInput = useRef<HTMLSelectElement>(null);
+
+  useEffect(() => {
+    if (firstInput.current) {
+      firstInput.current.focus();
+      firstInput.current.scrollIntoView();
+    }
+  }, []);
+
   return (
     <div className="form-holder">
       <form>
         <div className="input-container">
           <label htmlFor="productSelection">Select Product:</label>
           <select
+            ref={firstInput}
             name="productSelection"
             id="productSelection"
             onChange={(e) => {
