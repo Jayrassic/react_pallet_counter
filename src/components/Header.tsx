@@ -5,12 +5,12 @@ function Header() {
   const { products } = useContext(TotalContext) as ProductContext;
 
   // State for the total lbs in header.
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState<number>(0);
 
   // Calculates total weight when products is modified
   useEffect(() => {
     if (products !== null) {
-      let allWeight = 0;
+      let allWeight: number = 0;
 
       products.forEach((product) => {
         if (!product.totalWeight) {
