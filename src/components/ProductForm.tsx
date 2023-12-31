@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext } from "react";
 import { TotalContext, ProductContext } from "../contexts/TotalsContext";
 
 export interface ProductDataInterface {
@@ -37,22 +37,7 @@ function ProductForm({ id }: { id: number }) {
     return productData.quantity * boxQuantity + outOfBoxQuantity;
   }
 
-  // Watches for changes in inputs and updates the products context.
-  useEffect(() => {
-    if (productData) {
-      updateProduct({
-        id: id,
-        name: productData.name,
-        totalWeight: totalWeightCalculation(
-          productData,
-          boxQuantity,
-          outOfBoxQuantity
-        ),
-        totalCount: boxQuantity + outOfBoxQuantity,
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productData, boxQuantity, outOfBoxQuantity]);
+  /* Handlers */
 
   // Gathers information from DOM and sets it to the ProductData State.
   function productChangeHandler(e: React.ChangeEvent<HTMLSelectElement>): void {
@@ -61,18 +46,45 @@ function ProductForm({ id }: { id: number }) {
     );
 
     setProductData(data);
+    updateProduct({
+      id: id,
+      name: data.name,
+      totalWeight: totalWeightCalculation(data, boxQuantity, outOfBoxQuantity),
+      totalCount: boxQuantity + outOfBoxQuantity,
+    });
   }
 
-  // Gets the first input ref to focus on creation.
-  const firstInput = useRef<HTMLSelectElement>(null);
-
-  // When form is created, focuses on the first input.
-  useEffect(() => {
-    if (firstInput.current) {
-      firstInput.current.focus();
-      firstInput.current.scrollIntoView({ behavior: "smooth" });
+  // Gathers value fromm box quantity input and updates product data
+  function boxHandler(e) {
+    if (productData) {
+      const data = +e.target.value;
+      setBoxQuantity(data);
+      updateProduct({
+        id: id,
+        name: productData.name,
+        totalWeight: totalWeightCalculation(
+          productData,
+          data,
+          outOfBoxQuantity
+        ),
+        totalCount: data + outOfBoxQuantity,
+      });
     }
-  }, []);
+  }
+
+  // Gathers value from out of box quantity input and updates product data
+  function outHandler(e) {
+    if (productData) {
+      const data = +e.target.value;
+      setOutOfBoxQuantity(data);
+      updateProduct({
+        id: id,
+        name: productData.name,
+        totalWeight: totalWeightCalculation(productData, boxQuantity, data),
+        totalCount: boxQuantity + data,
+      });
+    }
+  }
 
   return (
     <div className="form-holder">
@@ -80,7 +92,6 @@ function ProductForm({ id }: { id: number }) {
         <div className="input-container">
           <label htmlFor="productSelection">Select Product:</label>
           <select
-            ref={firstInput}
             name="productSelection"
             id="productSelection"
             onChange={(e) => {
@@ -196,7 +207,7 @@ function ProductForm({ id }: { id: number }) {
             type="number"
             value={boxQuantity}
             min={0}
-            onChange={(e) => setBoxQuantity(+e.target.value)}
+            onChange={(e) => boxHandler(e)}
           />
         </div>
 
@@ -207,7 +218,7 @@ function ProductForm({ id }: { id: number }) {
             type="number"
             value={outOfBoxQuantity}
             min={0}
-            onChange={(e) => setOutOfBoxQuantity(+e.target.value)}
+            onChange={(e) => outHandler(e)}
           />
         </div>
       </form>
