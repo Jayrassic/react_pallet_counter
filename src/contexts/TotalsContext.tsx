@@ -23,21 +23,14 @@ export const TotalContextProvider = ({ children }: TotalProps) => {
 
   // Used to create a new product in the products State for future modifications.
   const saveNewProduct = (product: Product): void => {
-    const newProduct: Product = {
-      id: product.id,
-      name: product.name,
-      totalWeight: product.totalWeight,
-      totalCount: product.totalCount,
-    };
-
     // Empty array used to push products into.
     let updatedProducts = [];
 
     if (products) {
-      updatedProducts = products;
-      updatedProducts.push(newProduct);
+      updatedProducts = products.map((product) => product);
+      updatedProducts.push(product);
     } else {
-      updatedProducts.push(newProduct);
+      updatedProducts.push(product);
     }
 
     setProducts(updatedProducts);
@@ -56,7 +49,7 @@ export const TotalContextProvider = ({ children }: TotalProps) => {
         update.totalWeight = newProduct.totalWeight;
         update.totalCount = newProduct.totalCount;
 
-        const newArr = [...products];
+        const newArr = products.map((product) => product);
         newArr[newProduct.id] = update;
         setProducts(newArr);
       }
