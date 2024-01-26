@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { TotalContext, ProductContext } from "../contexts/TotalsContext";
 
 export interface ProductDataInterface {
@@ -86,12 +86,24 @@ function ProductForm({ id }: { id: number }) {
     }
   }
 
+  // When form is created, focuses on the first input, otherwise scroll to top.
+  useEffect(() => {
+    if (firstInput.current) {
+      firstInput.current.focus();
+      firstInput.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
+  // Gets the first input ref to focus on creation
+  const firstInput = useRef<HTMLSelectElement>(null);
+
   return (
     <div className="form-holder">
       <form>
         <div className="input-container">
           <label htmlFor="productSelection">Select Product:</label>
           <select
+            ref={firstInput}
             name="productSelection"
             id="productSelection"
             onChange={(e) => {
