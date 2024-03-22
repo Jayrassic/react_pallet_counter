@@ -55,7 +55,7 @@ function ProductForm({ id }: { id: number }) {
   }
 
   // Gathers value fromm box quantity input and updates product data
-  function boxHandler(e) {
+  function boxHandler(e: React.ChangeEvent<HTMLInputElement>) {
     if (productData) {
       const data = +e.target.value;
       setBoxQuantity(data);
@@ -73,7 +73,7 @@ function ProductForm({ id }: { id: number }) {
   }
 
   // Gathers value from out of box quantity input and updates product data
-  function outHandler(e) {
+  function outHandler(e: React.ChangeEvent<HTMLInputElement>) {
     if (productData) {
       const data = +e.target.value;
       setOutOfBoxQuantity(data);
