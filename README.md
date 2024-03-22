@@ -6,7 +6,7 @@ To create a calculator that takes the amount of boxes and single pieces on a pal
 
 ## Technology
 
-This app uses React and normalize CSS
+This app uses React with Typescript for code. Normalize CSS was used as well.
 
 ## Notes
 
