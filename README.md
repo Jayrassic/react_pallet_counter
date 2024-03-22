@@ -1,30 +1,19 @@
-# React + TypeScript + Vite
+# React Pallet Weight Counter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Goals
 
-Currently, two official plugins are available:
+To create a calculator that takes the amount of boxes and single pieces on a pallet, and returns the total quantity and weight of the pallet.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technology
 
-## Expanding the ESLint configuration
+This app uses React and normalize CSS
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Notes
 
-- Configure the top-level `parserOptions` property like this:
+This is a very special project for me as it sets forth the transition from my old career to my new one.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
+While closing my former business. We received an influx of orders. Close to a year's amount of orders in just one month. With such a large amount of products to ship out and no room for mistakes, I decided to use my to make a calculator that would insure all the correct products were being shipped and that the weight was calculated properly to avoid hefty overweight fees from shipping couriers.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+What this app does is take the amount of boxes and single pieces of a product that are placed on a pallet and convert that to a per piece number while also providing the total weight. The per piece number is compared to the customer's purchase order to verify the correct quantity while the total weight was input into the shipping forms.
+
+This is actually the second version of this project. The first was made when all the orders came in. It used vanilla javascript and was made quite quickly as there was a lot going on personally with the business. I decided to spend some time remaking it in react so that it worked smoother and that I can send off my last business project off with the respect it deserved.
