@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "Silkscreen";
+  src: url("/fonts/silkscreen-bold-webfont.woff2");
+}
+
+@font-face {
+  font-family: "Chakra Petch";
+  src: url("/fonts/chakrapetch-bold-webfont.woff2");
+}
+
 :root {
   font-family: "Chakra Petch", sans-serif;
   line-height: 1.5;
@@ -10,7 +20,10 @@
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("../assets/Pallets_stacked_high.jpg");
+    /* url("src/assets/Pallets_stacked_highh_1080.jpg"); */
+      url("https://res.cloudinary.com/dkqdyagy6/image/upload/q_auto:eco/f_auto/v1712958440/Pallets_stacked_highh_1080_l408oi.jpg");
+
+  background-attachment: fixed;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
