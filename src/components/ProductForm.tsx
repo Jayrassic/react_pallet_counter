@@ -94,7 +94,7 @@ function ProductForm({ id }: { id: number }) {
 
   return (
     <div className="form-holder">
-      <form>
+      <form data-testid="product-form">
         <div className="input-container">
           <label htmlFor="productSelection">Select Product:</label>
           <select
