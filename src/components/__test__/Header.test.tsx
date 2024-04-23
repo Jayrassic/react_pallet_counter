@@ -1,7 +1,6 @@
 import { describe, test, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { TotalContextProvider } from "../../contexts/TotalsContext";
-import "@testing-library/jest-dom";
 import Header from "../Header";
 
 [
