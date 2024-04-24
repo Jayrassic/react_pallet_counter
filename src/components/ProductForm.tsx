@@ -96,11 +96,11 @@ function ProductForm({ id }: { id: number }) {
     <div className="form-holder">
       <form data-testid="product-form">
         <div className="input-container">
-          <label htmlFor="productSelection">Select Product:</label>
+          <label htmlFor={`productSelection${id + 1}`}>Select Product:</label>
           <select
             ref={firstInput}
             name="productSelection"
-            id="productSelection"
+            id={`productSelection${id + 1}`}
             onChange={(e) => {
               productChangeHandler(e);
             }}
@@ -132,9 +132,9 @@ function ProductForm({ id }: { id: number }) {
         </div>
 
         <div className="input-container">
-          <label htmlFor="boxQuantity">Box Quantity:</label>
+          <label htmlFor={`boxQuantity${id + 1}`}>Box Quantity:</label>
           <input
-            id="boxQuantity"
+            id={`boxQuantity${id + 1}`}
             type="number"
             value={boxQuantity}
             min={0}
@@ -143,9 +143,9 @@ function ProductForm({ id }: { id: number }) {
         </div>
 
         <div className="input-container">
-          <label htmlFor="outOfBoxQty">Out of Box Quantity:</label>
+          <label htmlFor={`outOfBoxQty${id + 1}`}>Out of Box Quantity:</label>
           <input
-            id="outOfBoxQty"
+            id={`outOfBoxQty${id + 1}`}
             type="number"
             value={outOfBoxQuantity}
             min={0}
