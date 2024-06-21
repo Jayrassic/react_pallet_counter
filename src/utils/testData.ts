@@ -1,4 +1,4 @@
-import { Product } from "../../contexts/TotalsContext";
+import { Product } from "../contexts/TotalsContext";
 
 export const emptyData: Product[] = [
   {
